@@ -1,0 +1,26 @@
+workflows:
+  android-capacitor-workflow:
+    name: Android Capacitor APK Build
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - android_signing
+      vars:
+        PACKAGE_NAME: "com.somnia.ai.health"
+      node: latest
+    scripts:
+      - name: Install npm dependencies
+        script: | 
+          npm install
+      - name: Build web project
+        script: | 
+          npm run build --if-present
+      - name: Sync Capacitor Android
+        script: | 
+          npx cap sync android
+      - name: Build Android App (APK)
+        script: | 
+          cd android && ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/apk/*/.apk
