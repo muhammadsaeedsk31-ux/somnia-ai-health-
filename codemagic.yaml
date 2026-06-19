@@ -10,17 +10,7 @@ workflows:
         PACKAGE_NAME: "com.somnia.ai.health"
       node: latest
     scripts:
-      - name: Install npm dependencies
-        script: | 
-          npm install
-      - name: Create dist folder if missing
-        script: |
-          mkdir -p dist
-          echo "<html><body>Somnia AI Health</body></html>" > dist/index.html
-      - name: Sync Capacitor Android
-        script: | 
-          npx cap sync android
-      - name: Build Android App (APK)
+      - name: Build Android App (APK) Direct
         script: | 
           cd android && ./gradlew assembleDebug
     artifacts:
