@@ -13,7 +13,7 @@ workflows:
       - name: Install npm dependencies
         script: | 
           npm install
-      - scripts:
+       scripts:
       - name: Create dist folder if missing
         script: |
           mkdir -p dist
